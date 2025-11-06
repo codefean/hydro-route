@@ -1,21 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-
 import { useGlacierLayer } from "./glaciers";
 import Loc from "./loc";
 import Citation from "./citation";
 import "./weatherMap.css";
 import PitchControl from "./PitchControl";
-import SearchBar from "./search";
 import { useLakeLayer } from "./lakes";
 import Hotkey from "./Hotkey";
-import MapLegend from "./MapLegend";
-import LayersToggle from "./LayersToggle";
 import BetaPopup from "./popup";
 import { useLandslideLayer } from "./landslide";
 
-// cd /Users/seanfagan/Desktop/norsk-forecast
+// cd /Users/seanfagan/Desktop/hydro-route
 //
 
 mapboxgl.accessToken =
@@ -49,15 +45,15 @@ const WeatherStationsMap = () => {
     const map = mapRef.current;
     if (!map) return;
     map.flyTo({
-      center: [7.312, 62.2583],
-        zoom: 9.5,
+      center: [-123.908925, 43.554822],
+        zoom: 3.8,
       speed: 2.2,
       pitch: DEFAULT_PITCH,
     });
     setPitch(DEFAULT_PITCH);
   };
 
-  // Reset zoom on “R”
+
   useEffect(() => {
     const handleKeydown = (e) => {
       if (e.key.toLowerCase() === "r") resetZoom();
@@ -66,7 +62,7 @@ const WeatherStationsMap = () => {
     return () => window.removeEventListener("keydown", handleKeydown);
   }, []);
 
-  // Sync pitch with Mapbox map
+
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
@@ -90,12 +86,12 @@ const WeatherStationsMap = () => {
       let step = 1;
 
       updateProgress("Initializing Mapbox map...", step++, totalSteps);
-
+// 43.554822, -123.908925
       mapRef.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/mapbox/satellite-streets-v12",
-        center: [7.312, 62.2583],
-        zoom: 9.5,
+        center: [-123.908925, 43.554822],
+        zoom: 3.8,
         pitch: DEFAULT_PITCH,
       });
 
@@ -183,14 +179,11 @@ const WeatherStationsMap = () => {
       />
 
       <PitchControl mapRef={mapRef} value={pitch} onChange={(p) => setPitch(p)} />
-      <SearchBar mapRef={mapRef} />
       <Loc cursorInfo={cursorInfo} className="loc-readout" />
       <Citation className="citation-readout" stylePos={{}} />
       <Hotkey resetZoom={resetZoom} />
-      <MapLegend />
       <BetaPopup loading={loading} progress={progress} title="Loading Data..." />
 
-      <LayersToggle showLakes={showLakes} setShowLakes={setShowLakes} />
     </div>
   );
 };

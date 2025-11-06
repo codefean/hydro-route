@@ -43,7 +43,7 @@ const Header = () => {
       {/* Title centered */}
 <div className="header-title">
   <h1>
-    Norsk Landslide Forecast <span className="beta-text">| Beta</span>
+    Hydro Route <span className="beta-text">| Beta</span>
   </h1>
 </div>
     </header>
