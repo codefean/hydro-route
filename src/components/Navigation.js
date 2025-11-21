@@ -17,7 +17,7 @@ const Navigation = () => {
       <ul className={isMenuOpen ? "open" : ""}>
         <li>
           <NavLink
-            to="/weatherMap"
+            to="/routeMap"
             className={({ isActive }) => (isActive ? "active-link" : "")}
           >
             Map

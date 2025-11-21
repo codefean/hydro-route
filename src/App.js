@@ -2,7 +2,7 @@
 import React from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
-import WeatherMap from "./pages/weatherMap";
+import RouteMap from "./pages/routeMap";
 import About from "./pages/About";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -17,9 +17,9 @@ const useDocumentTitle = (title) => {
 };
 
 // Page wrappers to handle title updates
-const WeatherMapPage = () => {
-  useDocumentTitle("Norsk Landslide Forecast");
-  return <WeatherMap />;
+const RouteMapPage = () => {
+  useDocumentTitle("Route Map");
+  return <RouteMap />;
 };
 
 const AboutPage = () => {
@@ -35,12 +35,11 @@ const App = () => {
         <main className="main-content">
           <Routes>
             {/* Default home route */}
-            <Route path="/" element={<WeatherMapPage />} />
-            <Route path="/norsk-forecast" element={<WeatherMapPage />} />
-            <Route path="/weatherMap" element={<WeatherMapPage />} />
+            <Route path="/" element={<RouteMapPage />} />
+            <Route path="/route-map" element={<RouteMapPage />} />
+            <Route path="/routeMap" element={<RouteMapPage />} />
             <Route path="/about" element={<AboutPage />} />
-            {/* Fallback for 404 */}
-            <Route path="*" element={<WeatherMapPage />} />
+            <Route path="*" element={<RouteMapPage />} />
           </Routes>
         </main>
         <Footer />

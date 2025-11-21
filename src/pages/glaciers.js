@@ -3,9 +3,9 @@ import mapboxgl from "mapbox-gl";
 import "./glaciers.css";
 
 export const glacierTileset = {
-  url: "mapbox://mapfean.bmdn0gwv",
-  sourceLayer: "scandi_glaciers2",
-  sourceId: "glaciers_scandi",
+  url: "mapbox://mapfean.6tq07yii",
+  sourceLayer: "NAG_NA",
+  sourceId: "NAG_NA",
 };
 
 export const glacierTileset2 = {
@@ -54,7 +54,8 @@ export function useGlacierLayer({ mapRef }) {
           "source-layer": sourceLayer,
           paint: {
             "fill-color": "#2ba0ff",
-            "fill-opacity": 0.4,
+            "fill-opacity": 0.8,
+            "fill-outline-color": "#2ba0ff"
           },
         });
       }
